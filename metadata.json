@@ -1,0 +1,6 @@
+{
+  "name": "Smart Cab Pro",
+  "description": "Chandigarh to Shimla Taxi & 24/7 cab booking service in Chandigarh, Mohali, Kharar, Airport (IXC) & Delhi with instant booking, live fare calculator, verified mountain chauffeurs, and 24/7 phone hotline.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
