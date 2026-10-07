@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Phone, PhoneCall, MessageSquare, ArrowRight, ShieldCheck, Star, CheckCircle2, Zap, Clock, Navigation } from 'lucide-react';
+import { Phone, MessageSquare, ArrowRight } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/mockData';
 import { trackAdCallConversion, trackWhatsAppConversion } from '../utils/adTracking';
-import chauffeurImg from '../assets/images/punjabi_chauffeur_door_1788496859888.jpg';
-import comfortRideImg from '../assets/images/hero_cab_chauffeur_1791352974022.jpg';
+import familyFriendlyCabImg from '../assets/images/family_friendly_cab_1791359909874.jpg';
 
 interface CleanHeroSectionProps {
   onOpenBooking: () => void;
@@ -62,92 +61,73 @@ export const CleanHeroSection: React.FC<CleanHeroSectionProps> = ({
             </p>
 
             {/* Action Buttons matching the reference image layout */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
+            <div className="space-y-2.5 pt-1 max-w-xl">
               
-              {/* Primary Orange Button */}
+              {/* Row 1: Primary Orange Button */}
               <button
                 type="button"
                 data-no-autocall="true"
                 onClick={onOpenBooking}
-                className="py-3.5 px-6 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-black text-sm flex items-center space-x-2 transition-all shadow-lg shadow-orange-500/25 active:scale-95"
+                className="w-full sm:w-auto py-3.5 px-6 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-black text-sm flex items-center justify-center space-x-2 transition-all shadow-lg shadow-orange-500/25 active:scale-95"
               >
                 <span>Book a Ride Now</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </button>
 
-              {/* Call Hotline Button (Google Ads Call Driver) */}
-              <a
-                href={`tel:${BUSINESS_INFO.phoneClean}`}
-                data-no-autocall="true"
-                onClick={handleCall}
-                className="py-3.5 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-black text-sm flex items-center space-x-2.5 transition-all shadow-md active:scale-95 animate-call-glow"
-              >
-                <div className="w-5 h-5 rounded-full bg-orange-500 text-white flex items-center justify-center">
-                  <Phone className="w-3 h-3 stroke-[2.5]" />
-                </div>
-                <span>Call {BUSINESS_INFO.phone}</span>
-              </a>
-
-            </div>
-
-            {/* Trust points */}
-            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 pt-1">
-              <div className="flex items-center space-x-1.5">
-                <CheckCircle2 className="w-4 h-4 text-orange-500" />
-                <span>Zero Advance Required</span>
-              </div>
-              <div className="flex items-center space-x-1.5">
-                <CheckCircle2 className="w-4 h-4 text-orange-500" />
-                <span>Pay Driver via Cash / UPI</span>
-              </div>
-              <div className="flex items-center space-x-1.5">
-                <CheckCircle2 className="w-4 h-4 text-orange-500" />
-                <span>Zero Surge Charges</span>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Right Column (5 cols): Visual Asset matching the illustrated/human hero image in screenshot */}
-          <div className="lg:col-span-5 relative">
-            
-            {/* Visual Frame */}
-            <div className="relative mx-auto max-w-md bg-gradient-to-br from-orange-100 to-amber-50 p-3 sm:p-4 rounded-3xl border border-orange-200/60 shadow-xl shadow-orange-500/10">
-              
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100">
-                <img
-                  src={comfortRideImg}
-                  alt="Happy passengers enjoying comfortable taxi ride in Mohali"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex items-end p-4">
-                  <div className="text-white text-xs font-semibold">
-                    <span className="block text-amber-300 font-bold text-sm">Doorstep Chauffeur Pickup</span>
-                    <span>Mohali · Kharar · Chandigarh Airport</span>
+              {/* Row 2: Call Hotline Button + WhatsApp Button on the right side as requested */}
+              <div className="flex items-center gap-2.5">
+                <a
+                  href={`tel:${BUSINESS_INFO.phoneClean}`}
+                  data-no-autocall="true"
+                  onClick={handleCall}
+                  className="flex-1 py-3.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-black text-xs sm:text-sm flex items-center justify-center space-x-2 transition-all shadow-md active:scale-95 animate-call-glow"
+                >
+                  <div className="w-5 h-5 rounded-full bg-orange-500 text-white flex items-center justify-center shrink-0">
+                    <Phone className="w-3 h-3 stroke-[2.5]" />
                   </div>
-                </div>
-              </div>
+                  <span>Call {BUSINESS_INFO.phone}</span>
+                </a>
 
-              {/* Floating review card without price */}
-              <div className="mt-3 bg-white p-3 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-xs">
-                    ★
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900">4.9 / 5 Star Rating</div>
-                    <div className="text-[10px] text-slate-500">12,480+ Happy Riders</div>
-                  </div>
-                </div>
-
+                {/* WhatsApp Button on the right side (matching user's red box in screenshot) */}
                 <button
                   type="button"
                   data-no-autocall="true"
-                  onClick={onBookShimla}
-                  className="px-3 py-1.5 rounded-lg bg-orange-50 hover:bg-orange-100 text-orange-700 text-xs font-bold border border-orange-200 transition-colors"
+                  onClick={handleWhatsApp}
+                  className="py-3.5 px-4 sm:px-5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-black text-xs sm:text-sm flex items-center justify-center space-x-1.5 transition-all shadow-md shadow-[#25D366]/25 active:scale-95 shrink-0"
+                  aria-label="Chat on WhatsApp"
                 >
-                  Book Shimla Cab ➔
+                  <MessageSquare className="w-4 h-4 fill-white stroke-none" />
+                  <span>WhatsApp</span>
                 </button>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Right Column (5 cols): Visual Asset - Flush modern card, zero extra space, family-friendly photo */}
+          <div className="lg:col-span-5 relative">
+            
+            {/* Visual Frame - Clean compact card with no awkward beige padding */}
+            <div className="relative mx-auto max-w-md bg-white rounded-3xl border border-orange-100/90 shadow-md shadow-orange-500/5 overflow-hidden group">
+              
+              {/* Family-Friendly Taxi Image - Full flush presentation without overlay text */}
+              <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+                <img
+                  src={familyFriendlyCabImg}
+                  alt="Professional and family-friendly cab taxi service in Mohali"
+                  className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                />
+              </div>
+
+              {/* Review Card below photo - Compact, professional, high-contrast */}
+              <div className="p-3.5 sm:p-4 bg-white flex items-center space-x-3.5 border-t border-slate-100">
+                <div className="w-10 h-10 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
+                  ★
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-slate-900 leading-tight">4.9 / 5 Star Rating</div>
+                  <div className="text-xs text-slate-500 mt-0.5">12,480+ Happy Riders</div>
+                </div>
               </div>
 
             </div>

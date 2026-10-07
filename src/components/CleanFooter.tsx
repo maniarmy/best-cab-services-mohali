@@ -9,19 +9,17 @@ export const CleanFooter: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#FFF6EE] text-slate-600 text-xs pt-8 pb-20 sm:pb-12 px-4 sm:px-6 border-t border-orange-100/80">
-      <div className="max-w-6xl mx-auto space-y-8">
+    <footer className="bg-[#FFF6EE] text-slate-600 text-xs pt-6 sm:pt-8 pb-8 sm:pb-12 px-4 sm:px-6 border-t border-orange-100/80">
+      <div className="max-w-6xl mx-auto space-y-6 sm:space-y-8">
 
-        {/* 4 Columns layout (Company, Services, Routes, Direct Contact) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-8 border-b border-orange-200/60 text-slate-600">
+        {/* 4 Columns layout (Company, Services, Routes, Direct Contact) - Hidden on Mobile Device, Visible on Desktop (md+) */}
+        <div className="hidden md:grid md:grid-cols-4 gap-8 pb-8 border-b border-orange-200/60 text-slate-600">
           
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Company</h4>
             <ul className="space-y-2 text-xs">
               <li><a href="#" className="hover:text-orange-600 transition-colors">Home</a></li>
-              <li><a href="#reviews" className="hover:text-orange-600 transition-colors">Google Reviews</a></li>
-              <li><a href="#contact" className="hover:text-orange-600 transition-colors">Contact Us</a></li>
-              <li><a href="#blog" className="hover:text-orange-600 transition-colors">Blog</a></li>
+              <li><a href="#about" className="hover:text-orange-600 transition-colors">About Us</a></li>
             </ul>
           </div>
 

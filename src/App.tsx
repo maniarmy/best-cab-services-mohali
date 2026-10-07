@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { CleanNavbar } from './components/CleanNavbar';
 import { AutoCallHandler } from './components/AutoCallHandler';
 import { CleanHeroSection } from './components/CleanHeroSection';
+import { MohaliLocalCabSection } from './components/MohaliLocalCabSection';
+import { LocalOutstationServices } from './components/LocalOutstationServices';
+import { CarOptionsSection } from './components/CarOptionsSection';
 import { GoogleReviewsSection } from './components/GoogleReviewsSection';
-import { CleanContactSection } from './components/CleanContactSection';
-import { CleanBlogSection } from './components/CleanBlogSection';
 import { CleanCtaBanner } from './components/CleanCtaBanner';
 import { CleanFooter } from './components/CleanFooter';
 import { CleanFloatingBar } from './components/CleanFloatingBar';
+import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
 import { BookingModal } from './components/BookingModal';
 import { AuthModal } from './components/AuthModal';
 import { DispatchDashboard } from './components/DispatchDashboard';
@@ -121,7 +123,7 @@ export default function App() {
       />
 
       {/* Main Page: Reduced simple layout showing only Home, About Us, Contact Us, Blog */}
-      <main className="flex-grow">
+      <main className="flex-grow pb-20 md:pb-6">
         
         {/* Section 1: Home (Hero Section with requested headline and paragraph) */}
         <CleanHeroSection
@@ -129,18 +131,21 @@ export default function App() {
           onBookShimla={() => handleBookShimla()}
         />
 
-        {/* Section 2: Google Reviews (Compact 5.0 rating & customer cards matching screenshot) */}
-        <GoogleReviewsSection />
-
-        {/* Section 3: Contact Us (Dedicated 24/7 hotline, WhatsApp, and quick booking request form) */}
-        <CleanContactSection
-          onOpenBookingModal={() => handleOpenBooking()}
+        {/* Section 2: Local Cab Services Mohali (matching screenshot with requested paragraph) */}
+        <MohaliLocalCabSection
+          onOpenBooking={() => handleOpenBooking()}
         />
 
-        {/* Section 5: Blog (Travel Blog Articles) */}
-        <CleanBlogSection />
+        {/* Section 3: Local & Outstation Cab Services (matching screenshot) */}
+        <LocalOutstationServices />
 
-        {/* Section 6: Need a cab? Call Now! (Dark CTA banner matching screenshot, right above Footer) */}
+        {/* Section 3: Car Options (Swift Dzire, Honda City / Amaze, SUV, Hatchback matching screenshot) */}
+        <CarOptionsSection />
+
+        {/* Section 4: Google Reviews (Compact 5.0 rating & customer cards matching screenshot) */}
+        <GoogleReviewsSection />
+
+        {/* Section 4: Need a cab? Call Now! (CTA banner matching website theme) */}
         <CleanCtaBanner />
 
       </main>
@@ -148,8 +153,11 @@ export default function App() {
       {/* Footer matching simple professional structure */}
       <CleanFooter />
 
-      {/* Sticky Bottom Floating Call Bar on mobile/desktop */}
+      {/* Flush Mobile App Navigation Bar */}
       <CleanFloatingBar onOpenBooking={() => handleOpenBooking()} />
+
+      {/* Floating WhatsApp Quick Action Button on the Right Side */}
+      <FloatingWhatsAppButton />
 
       {/* Interactive Booking Modal without prices */}
       <BookingModal

@@ -1,60 +1,129 @@
-import React from 'react';
-import { Phone, MessageSquare, ArrowRight, PhoneCall } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Home, LayoutGrid, Car, PhoneCall } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/mockData';
-import { trackAdCallConversion, trackWhatsAppConversion } from '../utils/adTracking';
+import { trackAdCallConversion } from '../utils/adTracking';
 
 interface CleanFloatingBarProps {
   onOpenBooking: () => void;
 }
 
-export const CleanFloatingBar: React.FC<CleanFloatingBarProps> = ({ onOpenBooking }) => {
+export const CleanFloatingBar: React.FC<CleanFloatingBarProps> = ({ onOpenBooking: _onOpenBooking }) => {
+  const [activeTab, setActiveTab] = useState<'home' | 'services' | 'cars' | 'call'>('home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const servicesEl = document.getElementById('services');
+      const carsEl = document.getElementById('car-options');
+
+      const servicesTop = servicesEl ? servicesEl.offsetTop - 180 : 800;
+      const carsTop = carsEl ? carsEl.offsetTop - 180 : 1500;
+
+      if (scrollY >= carsTop) {
+        setActiveTab('cars');
+      } else if (scrollY >= servicesTop) {
+        setActiveTab('services');
+      } else {
+        setActiveTab('home');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleCall = () => {
-    trackAdCallConversion('floating_bar_call');
+    setActiveTab('call');
+    trackAdCallConversion('app_bar_call');
   };
 
-  const handleWhatsApp = () => {
-    trackWhatsAppConversion('floating_bar_whatsapp');
-    window.open('https://wa.me/919815505661', '_blank');
+  const scrollToSection = (id: string, tab: 'home' | 'services' | 'cars') => {
+    setActiveTab(tab);
+    if (id === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 p-2 sm:p-3 bg-white/95 backdrop-blur-md border-t border-orange-100 shadow-xl">
-      <div className="max-w-4xl mx-auto flex items-center justify-between gap-2.5">
+    <nav
+      aria-label="Mobile App Navigation"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-[0_-4px_24px_rgba(0,0,0,0.08)] pb-[max(0.5rem,env(safe-area-inset-bottom))]"
+    >
+      <div className="grid grid-cols-4 items-center h-16 px-2">
         
-        {/* Main Phone Call CTA Button */}
+        {/* Tab 1: Home */}
+        <button
+          type="button"
+          data-no-autocall="true"
+          onClick={() => scrollToSection('top', 'home')}
+          className={`flex flex-col items-center justify-center space-y-1 transition-all active:scale-95 ${
+            activeTab === 'home' ? 'text-orange-600 font-bold' : 'text-slate-500 hover:text-slate-800'
+          }`}
+        >
+          <div className="relative">
+            <Home className="w-5 h-5 stroke-[2.2]" />
+            {activeTab === 'home' && (
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-orange-500" />
+            )}
+          </div>
+          <span className="text-[10px] font-bold">Home</span>
+        </button>
+
+        {/* Tab 2: Services */}
+        <button
+          type="button"
+          data-no-autocall="true"
+          onClick={() => scrollToSection('services', 'services')}
+          className={`flex flex-col items-center justify-center space-y-1 transition-all active:scale-95 ${
+            activeTab === 'services' ? 'text-orange-600 font-bold' : 'text-slate-500 hover:text-slate-800'
+          }`}
+        >
+          <div className="relative">
+            <LayoutGrid className="w-5 h-5 stroke-[2.2]" />
+            {activeTab === 'services' && (
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-orange-500" />
+            )}
+          </div>
+          <span className="text-[10px] font-bold">Services</span>
+        </button>
+
+        {/* Tab 3: Cars */}
+        <button
+          type="button"
+          data-no-autocall="true"
+          onClick={() => scrollToSection('car-options', 'cars')}
+          className={`flex flex-col items-center justify-center space-y-1 transition-all active:scale-95 ${
+            activeTab === 'cars' ? 'text-orange-600 font-bold' : 'text-slate-500 hover:text-slate-800'
+          }`}
+        >
+          <div className="relative">
+            <Car className="w-5 h-5 stroke-[2.2]" />
+            {activeTab === 'cars' && (
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-orange-500" />
+            )}
+          </div>
+          <span className="text-[10px] font-bold">Cars</span>
+        </button>
+
+        {/* Tab 4: Call Now (Vibrant Orange App Action) */}
         <a
           href={`tel:${BUSINESS_INFO.phoneClean}`}
           data-no-autocall="true"
           onClick={handleCall}
-          className="flex-1 py-3 px-3 sm:px-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-black text-xs sm:text-sm flex items-center justify-center space-x-2 transition-all shadow-md shadow-orange-500/25 active:scale-95 animate-call-glow"
+          className="flex flex-col items-center justify-center space-y-1 active:scale-95 transition-all"
         >
-          <PhoneCall className="w-4 h-4 stroke-[2.5] shrink-0" />
-          <span className="truncate">Call: {BUSINESS_INFO.phone}</span>
+          <div className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-md shadow-orange-500/25 animate-pulse">
+            <PhoneCall className="w-4 h-4 stroke-[2.5]" />
+          </div>
+          <span className="text-[10px] font-black text-orange-600">Call Now</span>
         </a>
 
-        {/* WhatsApp Button */}
-        <button
-          type="button"
-          data-no-autocall="true"
-          onClick={handleWhatsApp}
-          className="flex-1 py-3 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 font-bold text-xs sm:text-sm flex items-center justify-center space-x-1.5 transition-all shadow-xs"
-        >
-          <MessageSquare className="w-4 h-4 text-emerald-400 shrink-0" />
-          <span className="truncate">WhatsApp</span>
-        </button>
-
-        {/* Book Online Button */}
-        <button
-          type="button"
-          data-no-autocall="true"
-          onClick={onOpenBooking}
-          className="hidden sm:flex flex-1 py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm items-center justify-center space-x-1.5 transition-all"
-        >
-          <span>Book Online</span>
-          <ArrowRight className="w-4 h-4 text-orange-500" />
-        </button>
-
       </div>
-    </div>
+    </nav>
   );
 };

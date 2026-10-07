@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Car, Menu, X } from 'lucide-react';
+import { Phone, Car, Menu, X, MessageSquare } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/mockData';
-import { trackAdCallConversion } from '../utils/adTracking';
+import { trackAdCallConversion, trackWhatsAppConversion } from '../utils/adTracking';
 
 interface CleanNavbarProps {
   onOpenBooking: () => void;
@@ -50,20 +50,26 @@ export const CleanNavbar: React.FC<CleanNavbarProps> = ({
           </a>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+          <nav className="hidden md:flex items-center space-x-7 text-sm font-semibold text-slate-600">
             <a href="#" className="text-orange-500 hover:text-orange-600 transition-colors">
               Home
             </a>
-            <a href="#reviews" className="hover:text-orange-500 transition-colors">
-              Reviews
+            <a href="#about" className="hover:text-orange-500 transition-colors">
+              About Us
             </a>
-            <a href="#contact" className="hover:text-orange-500 transition-colors">
-              Contact Us
+            <a href="#services" className="hover:text-orange-500 transition-colors">
+              Services
             </a>
-            <a href="#blog" className="hover:text-orange-500 transition-colors">
-              Blog
+            <a href="#car-options" className="hover:text-orange-500 transition-colors">
+              Cars
             </a>
           </nav>
+
+          {/* Live App Status Pill */}
+          <div className="hidden lg:flex items-center space-x-2 px-3 py-1 bg-emerald-50 border border-emerald-200/80 rounded-full text-[11px] font-bold text-emerald-700 shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>24/7 Cabs Active in Mohali</span>
+          </div>
 
           {/* Right Action: Clean Orange Call Button only (no WhatsApp icon, no user badge) */}
           <div className="hidden sm:flex items-center space-x-3">
@@ -114,25 +120,25 @@ export const CleanNavbar: React.FC<CleanNavbarProps> = ({
               Home
             </a>
             <a 
-              href="#reviews" 
+              href="#about" 
               onClick={() => setMobileMenuOpen(false)}
               className="py-2 px-3 rounded-lg hover:bg-slate-50"
             >
-              Reviews
+              About Us
             </a>
             <a 
-              href="#contact" 
+              href="#services" 
               onClick={() => setMobileMenuOpen(false)}
               className="py-2 px-3 rounded-lg hover:bg-slate-50"
             >
-              Contact Us
+              Services
             </a>
             <a 
-              href="#blog" 
+              href="#car-options" 
               onClick={() => setMobileMenuOpen(false)}
               className="py-2 px-3 rounded-lg hover:bg-slate-50"
             >
-              Blog
+              Cars
             </a>
           </div>
 
@@ -149,6 +155,20 @@ export const CleanNavbar: React.FC<CleanNavbarProps> = ({
               <Phone className="w-4 h-4" />
               <span>Call Dispatcher: {BUSINESS_INFO.phone}</span>
             </a>
+
+            <button
+              type="button"
+              data-no-autocall="true"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                trackWhatsAppConversion('navbar_mobile_whatsapp');
+                window.open('https://wa.me/919815505661', '_blank');
+              }}
+              className="w-full py-2.5 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded-xl text-xs text-center flex items-center justify-center space-x-2 shadow-xs"
+            >
+              <MessageSquare className="w-4 h-4 fill-white stroke-none" />
+              <span>Chat on WhatsApp</span>
+            </button>
 
             <button
               type="button"

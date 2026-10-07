@@ -17,7 +17,7 @@ export const CleanCtaBanner: React.FC = () => {
   };
 
   return (
-    <section className="py-8 sm:py-12 px-4 sm:px-6 bg-gradient-to-b from-[#FFFDF9] via-[#FFF9F3] to-[#FFF6EE] relative overflow-hidden border-t border-orange-100">
+    <section className="py-6 sm:py-8 px-4 sm:px-6 bg-gradient-to-b from-[#FFFDF9] via-[#FFF9F3] to-[#FFF6EE] relative overflow-hidden border-t border-orange-100">
       
       {/* Soft warm ambient blur matching website's warm cream & orange theme */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-gradient-to-tr from-orange-200/40 to-amber-200/30 rounded-full blur-3xl pointer-events-none" />
