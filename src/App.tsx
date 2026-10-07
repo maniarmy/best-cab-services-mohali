@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { CleanNavbar } from './components/CleanNavbar';
 import { AutoCallHandler } from './components/AutoCallHandler';
 import { CleanHeroSection } from './components/CleanHeroSection';
-import { CarOptionsSection } from './components/CarOptionsSection';
-import { PopularOutstationRoutes } from './components/PopularOutstationRoutes';
+import { GoogleReviewsSection } from './components/GoogleReviewsSection';
 import { CleanContactSection } from './components/CleanContactSection';
 import { CleanBlogSection } from './components/CleanBlogSection';
 import { CleanCtaBanner } from './components/CleanCtaBanner';
@@ -130,15 +129,10 @@ export default function App() {
           onBookShimla={() => handleBookShimla()}
         />
 
-        {/* Section 2: Car Options (Swift Dzire, Honda City / Amaze, SUV, Hatchback) */}
-        <CarOptionsSection
-          onSelectCar={(carId) => handleOpenBooking({ vehicleId: carId })}
-        />
+        {/* Section 2: Google Reviews (Compact 5.0 rating & customer cards matching screenshot) */}
+        <GoogleReviewsSection />
 
-        {/* Section 3: Popular Outstation Routes (Direct cabs to North Indian cities with Call & WhatsApp) */}
-        <PopularOutstationRoutes />
-
-        {/* Section 4: Contact Us (Dedicated 24/7 hotline, WhatsApp, and quick booking request form) */}
+        {/* Section 3: Contact Us (Dedicated 24/7 hotline, WhatsApp, and quick booking request form) */}
         <CleanContactSection
           onOpenBookingModal={() => handleOpenBooking()}
         />

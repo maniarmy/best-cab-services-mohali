@@ -3,7 +3,7 @@ import { Phone, PhoneCall, MessageSquare, ArrowRight, ShieldCheck, Star, CheckCi
 import { BUSINESS_INFO } from '../data/mockData';
 import { trackAdCallConversion, trackWhatsAppConversion } from '../utils/adTracking';
 import chauffeurImg from '../assets/images/punjabi_chauffeur_door_1788496859888.jpg';
-import comfortRideImg from '../assets/images/couple_comfort_ride_1788496877990.jpg';
+import comfortRideImg from '../assets/images/hero_cab_chauffeur_1791352974022.jpg';
 
 interface CleanHeroSectionProps {
   onOpenBooking: () => void;

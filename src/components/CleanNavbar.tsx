@@ -50,15 +50,12 @@ export const CleanNavbar: React.FC<CleanNavbarProps> = ({
           </a>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-7 text-sm font-semibold text-slate-600">
+          <nav className="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
             <a href="#" className="text-orange-500 hover:text-orange-600 transition-colors">
               Home
             </a>
-            <a href="#car-options" className="hover:text-orange-500 transition-colors">
-              Car Options
-            </a>
-            <a href="#routes" className="hover:text-orange-500 transition-colors">
-              Outstation Routes
+            <a href="#reviews" className="hover:text-orange-500 transition-colors">
+              Reviews
             </a>
             <a href="#contact" className="hover:text-orange-500 transition-colors">
               Contact Us
@@ -117,18 +114,11 @@ export const CleanNavbar: React.FC<CleanNavbarProps> = ({
               Home
             </a>
             <a 
-              href="#car-options" 
+              href="#reviews" 
               onClick={() => setMobileMenuOpen(false)}
               className="py-2 px-3 rounded-lg hover:bg-slate-50"
             >
-              Car Options
-            </a>
-            <a 
-              href="#routes" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-2 px-3 rounded-lg hover:bg-slate-50"
-            >
-              Outstation Routes
+              Reviews
             </a>
             <a 
               href="#contact" 

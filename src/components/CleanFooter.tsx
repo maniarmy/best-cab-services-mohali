@@ -19,8 +19,7 @@ export const CleanFooter: React.FC = () => {
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Company</h4>
             <ul className="space-y-2 text-xs">
               <li><a href="#" className="hover:text-orange-600 transition-colors">Home</a></li>
-              <li><a href="#car-options" className="hover:text-orange-600 transition-colors">Car Options</a></li>
-              <li><a href="#routes" className="hover:text-orange-600 transition-colors">Outstation Routes</a></li>
+              <li><a href="#reviews" className="hover:text-orange-600 transition-colors">Google Reviews</a></li>
               <li><a href="#contact" className="hover:text-orange-600 transition-colors">Contact Us</a></li>
               <li><a href="#blog" className="hover:text-orange-600 transition-colors">Blog</a></li>
             </ul>
