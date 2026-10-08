@@ -110,14 +110,14 @@ export const CleanFloatingBar: React.FC<CleanFloatingBarProps> = ({ onOpenBookin
           <span className="text-[10px] font-bold">Cars</span>
         </button>
 
-        {/* Tab 4: Call Now (Vibrant Orange App Action) */}
+        {/* Tab 4: Call Now (Vibrant Orange App Action - Blink Call Now) */}
         <a
           href={`tel:${BUSINESS_INFO.phoneClean}`}
           data-no-autocall="true"
           onClick={handleCall}
           className="flex flex-col items-center justify-center space-y-1 active:scale-95 transition-all"
         >
-          <div className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-md shadow-orange-500/25 animate-pulse">
+          <div className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-md shadow-orange-500/25 animate-call-glow">
             <PhoneCall className="w-4 h-4 stroke-[2.5]" />
           </div>
           <span className="text-[10px] font-black text-orange-600">Call Now</span>

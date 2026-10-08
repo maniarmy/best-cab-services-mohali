@@ -7,7 +7,7 @@ import { trackAdCallConversion } from '../utils/adTracking';
 import swiftDzireImg from '../assets/images/swift_dzire_taxi_1791254958573.jpg';
 import hondaAmazeImg from '../assets/images/honda_amaze_sedan_1791353773112.jpg';
 import innovaCrystaImg from '../assets/images/innova_crysta_suv_1791254998006.jpg';
-import hatchbackImg from '../assets/images/hatchback_wagonr_taxi_1791255018423.jpg';
+import hatchbackImg from '../assets/images/hatchback_cab_mohali_1791422099397.jpg';
 
 export const CarOptionsSection: React.FC = () => {
   const handleCall = (carName: string) => {
@@ -235,7 +235,8 @@ export const CarOptionsSection: React.FC = () => {
               <div className="relative aspect-[16/11] bg-slate-100 overflow-hidden">
                 <img
                   src={hatchbackImg}
-                  alt="WagonR & Tiago hatchback taxi in Mohali"
+                  alt="Cab Services Mohali Hatchback Taxi"
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute top-2.5 right-2.5">

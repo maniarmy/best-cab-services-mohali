@@ -1,20 +1,18 @@
 import React from 'react';
-import { ShieldCheck, Clock, MapPin, Phone, ArrowRight, MessageSquare } from 'lucide-react';
+import { ShieldCheck, Clock, MapPin, Phone } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/mockData';
 import { trackAdCallConversion, trackWhatsAppConversion } from '../utils/adTracking';
 
 // Ultra high-resolution imagery matching user's uploaded layout
 import mohaliTaxiLandmarkHdImg from '../assets/images/mohali_taxi_landmark_hd_1791357890144.jpg';
 import womanPassengerHdImg from '../assets/images/woman_passenger_hd_1791357906327.jpg';
-import familyPassengerHdImg from '../assets/images/family_passenger_hd_1791357919602.jpg';
+import familyPassengerHdImg from '../assets/images/mohali_cab_fleet_family_1791422111558.jpg';
 
 interface MohaliLocalCabSectionProps {
-  onOpenBooking: () => void;
+  onOpenBooking?: () => void;
 }
 
-export const MohaliLocalCabSection: React.FC<MohaliLocalCabSectionProps> = ({
-  onOpenBooking,
-}) => {
+export const MohaliLocalCabSection: React.FC<MohaliLocalCabSectionProps> = () => {
   const handleCall = () => {
     trackAdCallConversion('mohali_local_cab_call_button');
   };
@@ -39,7 +37,8 @@ export const MohaliLocalCabSection: React.FC<MohaliLocalCabSectionProps> = ({
               {/* High-Resolution Background Photo: White Taxi at Mohali entry monument with Indian flag */}
               <img
                 src={mohaliTaxiLandmarkHdImg}
-                alt="Local Cab Taxi Service at Mohali landmark"
+                alt="Cab Services Mohali"
+                referrerPolicy="no-referrer"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
               />
 
@@ -152,12 +151,12 @@ export const MohaliLocalCabSection: React.FC<MohaliLocalCabSectionProps> = ({
 
             </div>
 
-            {/* Bottom Row: Trusted By & Action Buttons in Brand Orange, White & WhatsApp on the right */}
-            <div className="pt-1 flex flex-wrap items-center justify-between gap-3">
+            {/* Bottom Row: Trusted By & Action Buttons - Full-width coverage, zero awkward empty space */}
+            <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-3 w-full">
               
               {/* Trust Badge with Avatar */}
-              <div className="flex items-center space-x-2.5">
-                <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-orange-200 bg-orange-100 shrink-0">
+              <div className="flex items-center space-x-2.5 shrink-0">
+                <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-orange-200 bg-orange-100 shrink-0 shadow-2xs">
                   <img
                     src={womanPassengerHdImg}
                     alt="Trusted rider"
@@ -165,7 +164,7 @@ export const MohaliLocalCabSection: React.FC<MohaliLocalCabSectionProps> = ({
                   />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-slate-900">
+                  <div className="text-xs font-bold text-slate-900 leading-tight">
                     Trusted by Thousands
                   </div>
                   <div className="text-[11px] text-slate-500">
@@ -174,38 +173,30 @@ export const MohaliLocalCabSection: React.FC<MohaliLocalCabSectionProps> = ({
                 </div>
               </div>
 
-              {/* CTA Action Buttons: Book, Call, and WhatsApp on the right */}
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  data-no-autocall="true"
-                  onClick={onOpenBooking}
-                  className="py-2.5 px-3.5 sm:px-4 rounded-xl bg-white hover:bg-orange-50 text-orange-600 border-2 border-orange-500 font-black text-xs sm:text-sm flex items-center space-x-1.5 transition-all shadow-xs active:scale-95"
-                >
-                  <span>Book Ride</span>
-                  <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
-                </button>
-
+              {/* CTA Action Buttons: Call Now and WhatsApp expanding flush to right edge to eliminate empty space */}
+              <div className="flex-1 flex items-center gap-2.5 w-full">
                 <a
                   href={`tel:${BUSINESS_INFO.phoneClean}`}
                   data-no-autocall="true"
                   onClick={handleCall}
-                  className="py-2.5 px-3.5 sm:px-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-black text-xs sm:text-sm flex items-center space-x-1.5 transition-all shadow-md shadow-orange-500/20 active:scale-95"
+                  className="flex-1 py-2.5 px-3 sm:px-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-black text-xs sm:text-sm flex items-center justify-center space-x-1.5 transition-all shadow-md shadow-orange-500/20 active:scale-95 animate-call-glow"
                 >
-                  <Phone className="w-3.5 h-3.5 fill-white stroke-none" />
-                  <span>Call Now</span>
+                  <Phone className="w-3.5 h-3.5 fill-white stroke-none shrink-0" />
+                  <span className="whitespace-nowrap">Call Now</span>
                 </a>
 
-                {/* WhatsApp button on the right */}
+                {/* WhatsApp button expanding flush to right edge */}
                 <button
                   type="button"
                   data-no-autocall="true"
                   onClick={handleWhatsApp}
-                  className="py-2.5 px-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs sm:text-sm flex items-center space-x-1.5 transition-all shadow-md shadow-[#25D366]/25 active:scale-95 shrink-0"
+                  className="flex-1 py-2.5 px-3 sm:px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-black text-xs sm:text-sm flex items-center justify-center space-x-1.5 transition-all shadow-md shadow-[#25D366]/25 active:scale-95"
                   aria-label="Chat on WhatsApp"
                 >
-                  <MessageSquare className="w-3.5 h-3.5 fill-white stroke-none" />
-                  <span>WhatsApp</span>
+                  <svg className="w-3.5 h-3.5 fill-white shrink-0" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.486.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                  </svg>
+                  <span className="whitespace-nowrap">WhatsApp</span>
                 </button>
               </div>
 

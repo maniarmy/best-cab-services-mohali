@@ -29,8 +29,22 @@
   }
 }
 
+/* Blinking animation specifically for Call Now button as requested */
+@keyframes callBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+  }
+  50% {
+    opacity: 0.88;
+    transform: scale(1.03);
+    box-shadow: 0 0 0 12px rgba(249, 115, 22, 0);
+  }
+}
+
 .animate-call-glow {
-  animation: callGlow 2s infinite;
+  animation: callBlink 1.4s ease-in-out infinite;
 }
 
 @keyframes livePulse {

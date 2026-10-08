@@ -151,7 +151,11 @@ export default function App() {
       </main>
 
       {/* Footer matching simple professional structure */}
-      <CleanFooter />
+      <CleanFooter
+        onOpenLogin={() => setIsAuthModalOpen(true)}
+        currentUser={currentUser}
+        onOpenDashboard={handleOpenDashboard}
+      />
 
       {/* Flush Mobile App Navigation Bar */}
       <CleanFloatingBar onOpenBooking={() => handleOpenBooking()} />

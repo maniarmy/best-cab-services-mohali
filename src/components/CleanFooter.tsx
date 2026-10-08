@@ -3,7 +3,17 @@ import { Phone, MessageSquare, Car, Globe, Heart } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/mockData';
 import { trackAdCallConversion } from '../utils/adTracking';
 
-export const CleanFooter: React.FC = () => {
+interface CleanFooterProps {
+  onOpenLogin?: () => void;
+  currentUser?: any;
+  onOpenDashboard?: () => void;
+}
+
+export const CleanFooter: React.FC<CleanFooterProps> = ({
+  onOpenLogin,
+  currentUser,
+  onOpenDashboard,
+}) => {
   const handleCall = () => {
     trackAdCallConversion('footer_call');
   };
@@ -20,6 +30,16 @@ export const CleanFooter: React.FC = () => {
             <ul className="space-y-2 text-xs">
               <li><a href="#" className="hover:text-orange-600 transition-colors">Home</a></li>
               <li><a href="#about" className="hover:text-orange-600 transition-colors">About Us</a></li>
+              <li>
+                <button
+                  type="button"
+                  data-no-autocall="true"
+                  onClick={currentUser ? onOpenDashboard : onOpenLogin}
+                  className="hover:text-orange-600 font-semibold text-slate-800 transition-colors flex items-center space-x-1 cursor-pointer"
+                >
+                  <span>🔐 {currentUser ? `${currentUser.role} Portal` : 'Portal Login'}</span>
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -60,8 +80,17 @@ export const CleanFooter: React.FC = () => {
         {/* Bottom Bar matching screenshot */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400 text-[11px]">
           <p>© {new Date().getFullYear()} Best Cab Services in Mohali. All rights reserved.</p>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <span>Serving Mohali, Kharar, Chandigarh, Zirakpur, Panchkula & Shimla</span>
+            <span className="hidden sm:inline text-slate-300">•</span>
+            <button
+              type="button"
+              data-no-autocall="true"
+              onClick={currentUser ? onOpenDashboard : onOpenLogin}
+              className="text-slate-500 hover:text-orange-600 transition-colors font-medium underline cursor-pointer"
+            >
+              {currentUser ? `${currentUser.name} (${currentUser.role} Portal)` : 'Portal Login'}
+            </button>
           </div>
         </div>
 
