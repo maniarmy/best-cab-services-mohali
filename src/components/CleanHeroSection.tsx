@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Phone } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/mockData';
 import { trackAdCallConversion, trackWhatsAppConversion } from '../utils/adTracking';
-import cabBookingMohaliImg from '../assets/images/cab_booking_mohali_1791423380272.jpg';
+import cabBookingCleanImg from '../assets/images/cab_booking_clean_1791480229196.jpg';
 
 interface CleanHeroSectionProps {
   onOpenBooking?: () => void;
@@ -100,13 +100,13 @@ export const CleanHeroSection: React.FC<CleanHeroSectionProps> = ({
             {/* Visual Frame - Clean compact card with no awkward beige padding */}
             <div className="relative mx-auto max-w-md bg-white rounded-3xl border border-orange-100/90 shadow-md shadow-orange-500/5 overflow-hidden group">
               
-              {/* Family-Friendly Taxi Image - Full flush presentation without overlay text */}
+              {/* Clean Cab Booking Image - Full exact display without text overlay or pinching */}
               <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
                 <img
-                  src={cabBookingMohaliImg}
+                  src={cabBookingCleanImg}
                   alt="Cab Booking in Mohali"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
 
